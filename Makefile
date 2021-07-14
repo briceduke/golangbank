@@ -14,6 +14,9 @@ migrateup:
 	migrate -path db/migrations -database "postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@localhost:2345/${POSTGRES_DB}?sslmode=disable" -verbose up 
 
 migratedown:
-	migrate -path db/migrations -database "postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@localhost:2345/${POSTGRES_DB}?sslmode=disable" -verbose down 
+	migrate -path db/migrations -database "postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@localhost:2345/${POSTGRES_DB}?sslmode=disable" -verbose down
 
-.PHONY:	createdb dropdb postgres migratedown migrateup
+sqlc:
+	sqlc generate
+
+.PHONY:	createdb dropdb postgres migratedown migrateup sqlc
